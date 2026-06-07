@@ -11,14 +11,16 @@ export default function Products() {
   const [stockMap, setStockMap] = useState({})
   const [loading, setLoading] = useState(true)
 
-  const fetchProducts = useCallback(() => {
-    setLoading(true)
+  const fetchProducts = useCallback(async () => {
     const params = {}
     if (search) params.search = search
     if (categoryId) params.categoryId = categoryId
-    api.get('/products', { params })
-      .then(res => setProducts(res.data))
-      .finally(() => setLoading(false))
+    try {
+      const res = await api.get('/products', { params })
+      setProducts(res.data)
+    } finally {
+      setLoading(false)
+    }
   }, [search, categoryId])
 
   useEffect(() => {
