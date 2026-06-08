@@ -3,21 +3,27 @@ import { persist } from 'zustand/middleware'
 
 export const useAuthStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       token: null,
+      refreshToken: null,
 
       login: (data) => set({
         token: data.token,
-        user: { id: data.id, name: data.name, email: data.email, role: data.role }
+        refreshToken: data.refreshToken,
+        user: {
+          id: data.id,
+          name: data.name,
+          email: data.email,
+          role: data.role,
+          avatarUrl: data.avatarUrl,
+          emailVerified: data.emailVerified,
+        }
       }),
 
-      logout: () => set({ user: null, token: null }),
+      logout: () => set({ user: null, token: null, refreshToken: null }),
 
-      isAdmin: () => {
-        const state = useAuthStore.getState()
-        return state.user?.role === 'ADMIN'
-      }
+      isAdmin: () => get().user?.role === 'ADMIN',
     }),
     { name: 'shopzone-auth' }
   )

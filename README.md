@@ -1,16 +1,43 @@
-# React + Vite
+# ShopZone Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Production-ready ecommerce frontend built with React, Vite, Tailwind CSS, Zustand, Axios, Framer Motion, and WebSocket (STOMP).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Product browsing with search, filters, pagination, dark mode
+- Cart, Wishlist, Checkout with COD & Razorpay
+- Auth: Login, Register, JWT refresh, Forgot/Reset password, OTP, Google login
+- Profile, Addresses, Order tracking timeline, Invoice download
+- Reviews & ratings, Real-time notifications
+- Admin dashboard with analytics, order & product management
 
-## React Compiler
+## Quick Start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+cp .env.example .env
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+App runs at http://localhost:5173
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Demo Accounts
+
+| Role  | Email               | Password  |
+|-------|---------------------|-----------|
+| Admin | admin@shopzone.com  | admin123  |
+| User  | user@shopzone.com   | user123   |
+
+## Docker
+
+```bash
+docker build -t shopzone-frontend .
+docker run -p 80:80 shopzone-frontend
+```
+
+## Environment Variables
+
+| Variable       | Default                      |
+|----------------|------------------------------|
+| VITE_API_URL   | http://localhost:8080/api    |
+| VITE_WS_URL    | http://localhost:8080/ws     |
